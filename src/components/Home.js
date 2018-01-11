@@ -3,10 +3,13 @@ import logo from '../communityBank.svg';
 import './Home.css';
 
 class Home extends Component {
-    constructor(){
-        super()
+    // constructor(){
+    //     super()
 
-    }
+    // login(){
+
+    // }
+    // }
 
     render() {
         return (
