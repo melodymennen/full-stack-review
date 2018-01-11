@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { login } from '../ducks/reducer';
+import axios from 'axios';
 
 
 class AcctInfo extends Component {
+
+    componentDidMount(){
+        axios.get('/user-data').then(response => {
+            if (response.data.user) {
+                this.props.login(response.data.user)
+            }
+        })
+    }
+
+
     render() {
         const { user } = this.props;
 
@@ -25,4 +37,8 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(AcctInfo);
+const mapDispatchToProps = {
+    login: login
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AcctInfo);
