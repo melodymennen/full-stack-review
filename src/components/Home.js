@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import logo from '../communityBank.svg';
+import './Home.css';
 
 class Home extends Component {
+    constructor(){
+        super()
+
+    }
+
     render() {
         return (
-            <div>
-                <h1>Home</h1>
+            <div className="home">
+                <img className="logo" src={logo} />
+                <div className="actions">
+                    <button onClick={this.login}>Login</button>
+                </div>
             </div>
         );
     }

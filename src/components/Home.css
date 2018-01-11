@@ -1,0 +1,11 @@
+.logo {
+    height: 250px;
+}
+
+.actions {
+    padding: 50px; 
+}
+
+.actions button {
+    cursor: pointer;
+}
