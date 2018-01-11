@@ -1,3 +1,5 @@
+import { error } from 'util';
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
@@ -33,10 +35,19 @@ app.post('/login', (req, res) => {
             req.session.user = { 
                 name: userData.name, 
                 email: userData.email, 
-                auth0Id: userData.user_id, 
-                picture: userData.picture
+                auth0_id: userData.user_id, 
+                picture_url: userData.picture
             }
             res.json({user: req.session.user})
+            app.get('db').find_user([userData.user_id]).then(users => {
+                if(users.length){
+                    app.get('db').create_user([userData.user_id, userData.email, userData.picture_url, userData.name])
+                }
+            }).then(() => {
+
+            }).catch(error => {
+                console.log('error', error)
+            })
         }).catch(error => {
             res.status(500).json({message: 'somethings broken'})
         })
