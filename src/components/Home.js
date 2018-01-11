@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../communityBank.svg';
+import { login } from '../ducks/reducer';
 import { connect } from 'react-redux';
 import Auth0Lock from 'auth0-lock';
 import axios from 'axios';
@@ -7,11 +8,7 @@ import './Home.css';
 
 class Home extends Component {
     constructor(){
-        super()
-
-        this.state = {
-
-        }
+        super();
 
         this.login = this.login.bind(this);
 
@@ -22,10 +19,11 @@ class Home extends Component {
         this.lock = new Auth0Lock(process.env.REACT_APP_AUTH0_CLIENT_ID, process.env.REACT_APP_AUTH0_DOMAIN)
         this.lock.on('authenticated', authResult => {
             this.lock.getUserInfo(authResult.accessToken, (error, user) => {
-                axios.post('/login', {userId: user.sub}).then(response => {
+                // axios.post('/login', {userId: user.sub}).then(response => {
+                    const response = {data: {user:{name:'bobert', picture: 'url'}}}
                     this.props.login(response.data.user)
                     this.props.history.push('/private')
-                })
+                // })
             })
         })
     }
@@ -47,11 +45,8 @@ class Home extends Component {
     }
 }
 
-// function dispatchStateToProps(){
-//     return {
-//         user: 
-//     }
-// }
+const mapDispatchToProps = {
+    login: login
+}
 
-export default Home;
-// export default connect(dispatchStateToProps)(Home);
+export default connect(null, mapDispatchToProps)(Home);
