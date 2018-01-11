@@ -1,5 +1,8 @@
 const initialState = {
-    user: 'bobert',
+    user: {
+        name: 'bobert',
+        picture: 'url'
+    }
 }
 
 const LOGIN = 'LOGIN';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../communityBank.svg';
+import { connect } from 'react-redux';
 import Auth0Lock from 'auth0-lock';
 import axios from 'axios';
 import './Home.css';
@@ -46,4 +47,11 @@ class Home extends Component {
     }
 }
 
+// function dispatchStateToProps(){
+//     return {
+//         user: 
+//     }
+// }
+
 export default Home;
+// export default connect(dispatchStateToProps)(Home);
